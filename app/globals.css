@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f0f2f5;
+  color: #0a1f44;
+  font-family: var(--font-body), system-ui, sans-serif;
+  position: relative;
+}
+
+h1, h2, h3, h4, .pagehead {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+/* Layer 1: Faded wildcat crest watermark behind all content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/wildcat-watermark.png");
+  background-repeat: no-repeat;
+  background-position: center 60%;
+  background-size: min(60vw, 620px);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* Layer 2: Soft dot grid texture */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle, #0a1f44 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+#__next, body > div {
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 p-5;
+}
+
+/* Card hover effect: lift, gold border, tint, icon color shift */
+.card-interactive {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200 p-5 transition-all duration-300;
+}
+.card-interactive:hover {
+  @apply -translate-y-1 shadow-lg;
+  border-color: #C9A94A;
+  background-color: #f5f7fb;
+}
+.card-interactive:hover .card-icon {
+  @apply text-gold;
+  transform: scale(1.15);
+}
+.card-icon {
+  @apply text-navy transition-all duration-300;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-navy px-5 py-2.5
+    text-sm font-semibold text-white transition hover:bg-[#081833] disabled:opacity-60;
+}
+
+.btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-2.5
+    text-sm font-semibold text-navy transition hover:bg-gold-light disabled:opacity-60;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-gray-300
+    px-5 py-2.5 text-sm font-semibold text-navy transition hover:bg-gray-50;
+}
+
+.input {
+  @apply w-full rounded-lg border border-gray-200 px-3.5 py-2.5 text-sm text-gray-800
+    outline-none transition focus:border-navy focus:ring-2 focus:ring-navy/10;
+}
+
+.label {
+  @apply mb-1.5 block text-sm font-medium text-gray-500;
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold;
+}
+
+/* Status badge colors */
+.badge-pending { @apply bg-slate-100 text-slate-600; }
+.badge-verification { @apply bg-amber-50 text-amber-700; }
+.badge-processing { @apply bg-blue-50 text-blue-700; }
+.badge-ready { @apply bg-emerald-50 text-emerald-700; }
+.badge-completed { @apply bg-green-50 text-green-700; }
+.badge-rejected { @apply bg-red-50 text-red-600; }
+
+/* Pill nav tabs */
+.nav-pill {
+  @apply rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200;
+}
+.nav-pill-active {
+  @apply bg-navy text-white;
+}
+.nav-pill-inactive {
+  @apply border border-gray-200 text-gray-500 hover:border-gold hover:text-navy;
+}
+
+/* Logo with gold ring */
+.logo-ring {
+  @apply rounded-full ring-2 ring-gold;
+}
+
+/* Progress tracker */
+.progress-step {
+  @apply flex items-center gap-2 text-xs font-medium;
+}
+.progress-dot {
+  @apply h-3 w-3 rounded-full border-2;
+}
+.progress-line {
+  @apply h-0.5 flex-1;
+}
